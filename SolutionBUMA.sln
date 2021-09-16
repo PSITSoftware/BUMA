@@ -5,15 +5,21 @@ VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{0E7F8266-27DE-4EBC-BB46-82BF3C77EBE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUMA Security Services", "BUMA Security Services\BUMA Security Services.csproj", "{40516A41-70AF-4A3F-8044-4F05AF1AE7E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BUMA Security Services", "BUMA Security Services\BUMA Security Services.csproj", "{40516A41-70AF-4A3F-8044-4F05AF1AE7E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Administration", "Administration", "{6F9C6B44-4765-43EE-8854-56A12ECCEC79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUMA Administration Services", "BUMA Administration Services\BUMA Administration Services.csproj", "{D4806C7F-DF98-4CCE-B73B-E4F0E0633BD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BUMA Administration Services", "BUMA Administration Services\BUMA Administration Services.csproj", "{D4806C7F-DF98-4CCE-B73B-E4F0E0633BD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bussiness", "Bussiness", "{A0F32AB3-9080-49C3-A168-3E4842E8C954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUMA Bussiness Services", "BUMA Bussiness Services\BUMA Bussiness Services.csproj", "{520142B9-5496-41C5-B585-817957CD0DC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BUMA Bussiness Services", "BUMA Bussiness Services\BUMA Bussiness Services.csproj", "{520142B9-5496-41C5-B585-817957CD0DC3}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E2E597B8-7643-4669-8078-1D3D8606C4D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API Gateway", "API Gateway", "{7488F181-A0A1-46CA-8269-540293550CAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUMA API Gateway", "BUMA API Gateway\BUMA API Gateway.csproj", "{CE232B68-3D54-44EC-AC1C-D4ED043E52EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,14 @@ Global
 		{520142B9-5496-41C5-B585-817957CD0DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{520142B9-5496-41C5-B585-817957CD0DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{520142B9-5496-41C5-B585-817957CD0DC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2E597B8-7643-4669-8078-1D3D8606C4D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2E597B8-7643-4669-8078-1D3D8606C4D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2E597B8-7643-4669-8078-1D3D8606C4D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2E597B8-7643-4669-8078-1D3D8606C4D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE232B68-3D54-44EC-AC1C-D4ED043E52EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE232B68-3D54-44EC-AC1C-D4ED043E52EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE232B68-3D54-44EC-AC1C-D4ED043E52EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE232B68-3D54-44EC-AC1C-D4ED043E52EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +55,7 @@ Global
 		{40516A41-70AF-4A3F-8044-4F05AF1AE7E5} = {0E7F8266-27DE-4EBC-BB46-82BF3C77EBE4}
 		{D4806C7F-DF98-4CCE-B73B-E4F0E0633BD3} = {6F9C6B44-4765-43EE-8854-56A12ECCEC79}
 		{520142B9-5496-41C5-B585-817957CD0DC3} = {A0F32AB3-9080-49C3-A168-3E4842E8C954}
+		{CE232B68-3D54-44EC-AC1C-D4ED043E52EA} = {7488F181-A0A1-46CA-8269-540293550CAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {85734D0B-96DD-4FB9-9C4D-80108E22CAFD}

@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  bumaapigateway:
+    image: ${DOCKER_REGISTRY-}bumaapigateway
+    build:
+      context: .
+      dockerfile: API Gateway/BUMA API Gateway/Dockerfile
+    ports:
+        - "4450:443"
+  
+  bumaaudittrailservices:
+    image: ${DOCKER_REGISTRY-}bumaaudittrailservices
+    build:
+      context: .
+      dockerfile: Audit/PIDT Audit Trail Services/Dockerfile
+    ports:
+        - "4460:443"
+
+  bumaadministrationsservices:
+    image: ${DOCKER_REGISTRY-}bumaadministrationsservices
+    build:
+      context: .
+      dockerfile: Administration/BUMA Administrations Services/Dockerfile
+    hostname: pidtdatasheetservices
+    ports:
+        - "4431:443"
