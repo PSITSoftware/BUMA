@@ -4,8 +4,8 @@
     <ProjectVersion>2.1</ProjectVersion>
     <ProjectGuid>e2e597b8-7643-4669-8078-1d3d8606c4d6</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:4432/swagger</DockerServiceUrl>
-    <DockerServiceName>pidt_datasheet_services</DockerServiceName>
+    <DockerServiceUrl>{Scheme}://localhost:40843/swagger</DockerServiceUrl>
+    <DockerServiceName>bumaadministrationservices</DockerServiceName>
   </PropertyGroup>
   <PropertyGroup>
     <DockerTargetOS>Linux</DockerTargetOS>
