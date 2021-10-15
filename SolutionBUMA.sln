@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BUMA API Gateway", "BUMA AP
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E2E597B8-7643-4669-8078-1D3D8606C4D6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{795C3612-9C00-469D-9431-4C8F0DEB5997}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buma.Dominio", "Buma.Dominio\Buma.Dominio.csproj", "{9A790D2B-9362-4801-90BB-C678F952B5B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,10 @@ Global
 		{E2E597B8-7643-4669-8078-1D3D8606C4D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2E597B8-7643-4669-8078-1D3D8606C4D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2E597B8-7643-4669-8078-1D3D8606C4D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A790D2B-9362-4801-90BB-C678F952B5B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A790D2B-9362-4801-90BB-C678F952B5B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A790D2B-9362-4801-90BB-C678F952B5B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A790D2B-9362-4801-90BB-C678F952B5B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +64,7 @@ Global
 		{D4806C7F-DF98-4CCE-B73B-E4F0E0633BD3} = {6F9C6B44-4765-43EE-8854-56A12ECCEC79}
 		{520142B9-5496-41C5-B585-817957CD0DC3} = {A0F32AB3-9080-49C3-A168-3E4842E8C954}
 		{CE232B68-3D54-44EC-AC1C-D4ED043E52EA} = {7488F181-A0A1-46CA-8269-540293550CAF}
+		{9A790D2B-9362-4801-90BB-C678F952B5B1} = {795C3612-9C00-469D-9431-4C8F0DEB5997}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {85734D0B-96DD-4FB9-9C4D-80108E22CAFD}
