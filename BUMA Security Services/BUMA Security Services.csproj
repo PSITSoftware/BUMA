@@ -31,8 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BUMA.Security.Servicios\BUMA.Security.Servicios.csproj" />
     <ProjectReference Include="..\Buma.Dominio\Buma.Dominio.csproj" />
+    <ProjectReference Include="..\BUMA.Security.Servicios\BUMA.Security.Servicios.csproj" />
   </ItemGroup>
 
 </Project>
