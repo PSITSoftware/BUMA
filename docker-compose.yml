@@ -1,6 +1,6 @@
 version: '3.4'
 
-services:
+#services:
   #bumaapigateway:
   #  image: ${DOCKER_REGISTRY-}bumaapigateway
   #  build:
@@ -17,13 +17,13 @@ services:
   #  ports:
   #      - "4479:443"
 
-  bumaadministrationservices:
-    image: ${DOCKER_REGISTRY-}bumaadministrationservices
-    build:
-      context: .
-      dockerfile: Administration/BUMA Administration Services/Dockerfile
-    ports:
-        - "40843:443"
+  #bumaadministrationservices:
+  #  image: ${DOCKER_REGISTRY-}bumaadministrationservices
+  #  build:
+  #    context: .
+  #    dockerfile: Administration/BUMA Administration Services/Dockerfile
+  #  ports:
+  #      - "40843:443"
 
   #bumasecurityservices:
   #  image: ${DOCKER_REGISTRY-}bumasecurityservices
@@ -33,9 +33,9 @@ services:
      
   #  ports:
   #      - "4481:443"
-  bumasecurityservices:
-    image: ${DOCKER_REGISTRY-}bumasecurityservices
-    build:
-      context: .
-      dockerfile: BUMA Security Services\Dockerfile
+  #bumasecurityservices:
+  #  image: ${DOCKER_REGISTRY-}bumasecurityservices
+  #  build:
+  #    context: .
+  #    dockerfile: BUMA Security Services\Dockerfile
 
