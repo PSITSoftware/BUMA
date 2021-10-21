@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>buma.securiy.servicios</AssemblyName>
+    <RootNamespace>buma.securiy.servicios</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Buma.Dominio\Buma.Dominio.csproj" />
+  </ItemGroup>
+
+</Project>

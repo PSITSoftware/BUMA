@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>BUMA_API_Gateway</RootNamespace>
+    <RootNamespace>buma.api.gatway</RootNamespace>
     <UserSecretsId>779e3855-2e9e-48e5-a181-76a7d2e07739</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <AssemblyName>buma.api.gatway</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
