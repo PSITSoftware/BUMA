@@ -1,6 +1,6 @@
 ﻿// ==================================================================================
 // Desarrollado Por	    : Edwin Andres Florez
-// Fecha de Creación	: 19/10/2021
+// Fecha de Creación	: 20/10/2021
 // Producto o sistema	: PIDT
 // Empresa	: PSIT S.A.S
 // Proyecto	: BUMA
@@ -10,69 +10,54 @@
 // 1.0.0.0	<Descripción del archivo>
 //
 // ==============================================================================
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Buma.Dominio.DTO.Seguridad
+namespace Buma.Dominio.DTO.Administracion
 {
-    public class Usuario
+    public class Empresa
     {
-        public int idUsuario
+        public int idempresa
         {
             get;set;
         }
-        public int idEmpresa
+        public int idtipoempresa
         {
             get;set;
         }
-        public int idtipoDocumento
+        public int idregimen
         {
             get;set;
         }
-        public string numeroDocumento
+        public string nombreempresa
         {
             get;set;
         }
-        public string PrimerNombre
+        public string nit
         {
             get;set;
         }
-        public string SegundoNombre
+        public string direccion
         {
             get;set;
         }
-        public string PrimerApellido
+        public string basededatos
         {
             get;set;
         }
-        public string SegundoApellido
+        public int numerousuarios
         {
             get;set;
         }
-        public string usuario
+        public int key_code
         {
             get;set;
         }
-        public string password
-        {
-            get;set;
-        }
-        public string TelefonoCont
-        {
-            get;set;
-        }
-        public string CorreoElect
-        {
-            get;set;
-        }
-        public int Estado
-        {
-            get;set;
-        }
-        public string Usuariocre
+        public string usuariocreacion
         {
             get;set;
         }
@@ -80,10 +65,9 @@ namespace Buma.Dominio.DTO.Seguridad
         {
             get;set;
         }
-        public string TipoUsuario
+        public char estado
         {
             get;set;
         }
-    }
-    
+    }¿
 }

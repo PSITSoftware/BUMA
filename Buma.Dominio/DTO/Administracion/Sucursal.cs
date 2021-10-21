@@ -1,6 +1,6 @@
 ﻿// ==================================================================================
 // Desarrollado Por	    : Edwin Andres Florez
-// Fecha de Creación	: 19/10/2021
+// Fecha de Creación	: 20/10/2021
 // Producto o sistema	: PIDT
 // Empresa	: PSIT S.A.S
 // Proyecto	: BUMA
@@ -16,74 +16,73 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Buma.Dominio.DTO.Seguridad
+namespace Buma.Dominio.DTO.Administracion
 {
-    public class Usuario
+    class Sucursal
     {
-        public int idUsuario
+        public int idsucursal
         {
             get;set;
+        }
+        public string nombre
+        {
+            get;set;
+        }
+        public string actividad
+        {
+            get; set;
+        }
+        public string Popietario
+        {
+            get; set;
+        }
+        public string nit
+        {
+            get; set;
+        }
+        public string direccion
+        {
+            get; set;
+        }
+        public string telefono
+        {
+            get; set;
+        }
+        public string ciudad
+        {
+            get; set;
+        }
+        public string leyenda
+        {
+            get; set;
+        }
+        public string horario
+        {
+            get; set;
+        }
+        public string resolucion
+        {
+            get; set;
+        }
+        public DateTime fecharesolucion
+        {
+            get; set;
+        }
+        public string prefijo
+        {
+            get; set;
+        }
+        public int desde
+        {
+            get; set;
+        }
+        public int hasta
+        {
+            get; set;
         }
         public int idEmpresa
         {
-            get;set;
-        }
-        public int idtipoDocumento
-        {
-            get;set;
-        }
-        public string numeroDocumento
-        {
-            get;set;
-        }
-        public string PrimerNombre
-        {
-            get;set;
-        }
-        public string SegundoNombre
-        {
-            get;set;
-        }
-        public string PrimerApellido
-        {
-            get;set;
-        }
-        public string SegundoApellido
-        {
-            get;set;
-        }
-        public string usuario
-        {
-            get;set;
-        }
-        public string password
-        {
-            get;set;
-        }
-        public string TelefonoCont
-        {
-            get;set;
-        }
-        public string CorreoElect
-        {
-            get;set;
-        }
-        public int Estado
-        {
-            get;set;
-        }
-        public string Usuariocre
-        {
-            get;set;
-        }
-        public DateTime fechacreacion
-        {
-            get;set;
-        }
-        public string TipoUsuario
-        {
-            get;set;
+            get; set;
         }
     }
-    
 }
