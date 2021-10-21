@@ -2,13 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>BUMA.Security.Services</RootNamespace>
+    <RootNamespace>buma.security.services</RootNamespace>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
     <UserSecretsId>410aacb5-3137-4a1d-a6a9-69c68bff15d2</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
-    <AssemblyName>BUMA.Security.Services</AssemblyName>
+    <AssemblyName>buma.security.services</AssemblyName>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controler\**" />
+    <Content Remove="Controler\**" />
+    <EmbeddedResource Remove="Controler\**" />
+    <None Remove="Controler\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Docker.DotNet" Version="3.125.5" />
@@ -21,7 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controler\" />
+    <ProjectReference Include="..\..\BUMA.Security.Servicios\BUMA.Security.Servicios.csproj" />
+    <ProjectReference Include="..\Buma.Dominio\Buma.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

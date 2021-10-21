@@ -19,11 +19,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using buma.dominio.DTO.Seguridad;
+using buma.security.servicios.interfaces;
 
-namespace buma.security.services.Model
+namespace buma.security.servicios.implementaciones
+
 {
-    public class User
+    public class UsuarioServicio : IUsuarioServicio
     {
+        public async Task<List<Usuario>> GetUsuariosListAsync()
+        {
+            var usuarios = new List<Usuario>();
+            return usuarios;
+        }
     }
 }
