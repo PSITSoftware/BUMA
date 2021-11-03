@@ -6,9 +6,4 @@
     <RootNamespace>buma.dominio</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="DTO\Administracion\" />
-    <Folder Include="DTO\Negocio\" />
-  </ItemGroup>
-
 </Project>

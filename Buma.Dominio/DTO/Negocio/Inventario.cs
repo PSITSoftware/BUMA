@@ -1,6 +1,6 @@
 ﻿// ==================================================================================
 // Desarrollado Por	    : Edwin Andres Florez
-// Fecha de Creación	: 19/10/2021
+// Fecha de Creación	: 20/10/2021
 // Producto o sistema	: PIDT
 // Empresa	: PSIT S.A.S
 // Proyecto	: BUMA
@@ -16,74 +16,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace buma.dominio.DTO.Seguridad
+namespace Buma.Dominio.DTO.Negocio
 {
-    public class Usuario
+     public class Inventario
     {
-        public int idUsuario
+        public int idinventario
         {
             get;set;
         }
-        public int idEmpresa
+        public int idproducto
         {
             get;set;
         }
-        public int idtipoDocumento
+        public DateTime fechaingreso
         {
             get;set;
         }
-        public string numeroDocumento
+        public DateTime fechavencimiento
         {
             get;set;
         }
-        public string PrimerNombre
+        public int catidad
         {
             get;set;
         }
-        public string SegundoNombre
+        public string codigodebarras
         {
             get;set;
         }
-        public string PrimerApellido
+        public int valorneto
         {
             get;set;
         }
-        public string SegundoApellido
+        public int valortotal
         {
             get;set;
         }
-        public string usuario
+        public int peso
         {
             get;set;
         }
-        public string password
-        {
-            get;set;
-        }
-        public string TelefonoCont
-        {
-            get;set;
-        }
-        public string CorreoElect
-        {
-            get;set;
-        }
-        public int Estado
-        {
-            get;set;
-        }
-        public string Usuariocre
-        {
-            get;set;
-        }
-        public DateTime fechacreacion
-        {
-            get;set;
-        }
-        public string TipoUsuario
+        public int idempresa
         {
             get;set;
         }
     }
-    
 }

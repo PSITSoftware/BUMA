@@ -16,11 +16,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace buma.dominio.DTO.Seguridad
+namespace Buma.Dominio.DTO.Negocio
 {
-    public class Usuario
+    public class cliente
     {
-        public int idUsuario
+        public int idcliente
+        {
+            get;set;
+        }
+        public string PrimerNombre
+        {
+            get; set;
+        }
+        public string SegundoNombre
+        {
+            get; set;
+        }
+        public string PrimerApellido
+        {
+            get; set;
+        }
+        public string SegundoApellido
+        {
+            get; set;
+        }
+        public int idtipodocumento
+        {
+            get;set;
+        }
+        public string Documento
+        {
+            get;set;
+        }
+        public string NumeroContacto
+        {
+            get;set;
+        }
+        public string Email
+        {
+            get; set;
+        }
+        public int idRegimen
         {
             get;set;
         }
@@ -28,62 +64,5 @@ namespace buma.dominio.DTO.Seguridad
         {
             get;set;
         }
-        public int idtipoDocumento
-        {
-            get;set;
-        }
-        public string numeroDocumento
-        {
-            get;set;
-        }
-        public string PrimerNombre
-        {
-            get;set;
-        }
-        public string SegundoNombre
-        {
-            get;set;
-        }
-        public string PrimerApellido
-        {
-            get;set;
-        }
-        public string SegundoApellido
-        {
-            get;set;
-        }
-        public string usuario
-        {
-            get;set;
-        }
-        public string password
-        {
-            get;set;
-        }
-        public string TelefonoCont
-        {
-            get;set;
-        }
-        public string CorreoElect
-        {
-            get;set;
-        }
-        public int Estado
-        {
-            get;set;
-        }
-        public string Usuariocre
-        {
-            get;set;
-        }
-        public DateTime fechacreacion
-        {
-            get;set;
-        }
-        public string TipoUsuario
-        {
-            get;set;
-        }
     }
-    
 }
