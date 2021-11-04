@@ -1,6 +1,6 @@
 ﻿// ==================================================================================
-// Desarrollado Por	    : Silvio Alejandro Reyes Jota
-// Fecha de Creación	: 20/10/2021
+// Desarrollado Por	    : Edwn Andres Florez
+// Fecha de Creación	: 26/10/2021
 // Producto o sistema	: BUMA
 // Empresa	: PSIT S.A.S
 // Proyecto	: BUMA
@@ -12,9 +12,9 @@
 // ==================================================================================
 // HISTORIAL DE CAMBIOS:
 // =================================================================================
-// Ver.	Fecha	        Autor	                            Descripción
+// Ver.	Fecha	        Autor	                Descripción
 // ---	-------------	----------------------	-----------------------------------
-// 0.1	 20/10/2021	    Silvio A. Reyes J.             Desarrollo Inicial
+// 0.1	26/10/2021	    Edwn Andres Florez	    Desarrollo Inicial
 
 using System;
 using System.Collections.Generic;
@@ -27,6 +27,10 @@ namespace buma.security.servicios.interfaces
 {
     public interface IUsuarioServicio
     {
-        public Task<List<Usuario>> GetUsuariosListAsync();
+        public Task<List<Usuario>> GetUsuarioListAsync();
+
+        public Task<Usuario> GetUsuarioByIdAsync(int idUsuario);
+        public Task InsertUsuario(Usuario usuario);
+        public Task UpdateUsuario(Usuario usuario);
     }
 }

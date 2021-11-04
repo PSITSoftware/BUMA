@@ -15,7 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Buma.Dominio.DTO.Negocio
+namespace buma.dominio.DTO.Negocio
 {
      public class Factura
     {

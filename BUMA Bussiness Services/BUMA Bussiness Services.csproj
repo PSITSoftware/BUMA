@@ -16,7 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controller\" />
+    <ProjectReference Include="..\Buma.Dominio\Buma.Dominio.csproj" />
+    <ProjectReference Include="..\BUMA.Negocio.Services\BUMA.Bussiness.Servicios.csproj" />
   </ItemGroup>
 
 </Project>

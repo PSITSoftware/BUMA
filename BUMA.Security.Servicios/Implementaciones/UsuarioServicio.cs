@@ -1,6 +1,6 @@
 ﻿// ==================================================================================
-// Desarrollado Por	    : Silvio Alejandro Reyes Jota
-// Fecha de Creación	: 20/10/2021
+// Desarrollado Por	    : Edwn Andres Florez
+// Fecha de Creación	: 26/10/2021
 // Producto o sistema	: BUMA
 // Empresa	: PSIT S.A.S
 // Proyecto	: BUMA
@@ -12,10 +12,9 @@
 // ==================================================================================
 // HISTORIAL DE CAMBIOS:
 // =================================================================================
-// Ver.	Fecha	        Autor	                            Descripción
+// Ver.	Fecha	        Autor	                Descripción
 // ---	-------------	----------------------	-----------------------------------
-// 0.1	 20/10/2021	    Silvio A. Reyes J.             Desarrollo Inicial
-
+// 0.1	26/10/2021	    Edwn Andres Florez	    Desarrollo Inicial
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,10 +28,25 @@ namespace buma.security.servicios.implementaciones
 {
     public class UsuarioServicio : IUsuarioServicio
     {
-        public async Task<List<Usuario>> GetUsuariosListAsync()
+        public async Task<List<Usuario>> GetUsuarioListAsync()
         {
-            var usuarios = new List<Usuario>();
-            return usuarios;
+            var usuario = new List<Usuario>();
+            return usuario;
+        }
+
+        public async Task<Usuario> GetUsuarioByIdAsync(int idUsuario)
+        {
+            var usuario = new Usuario();
+            return usuario;
+        }
+        public async Task InsertUsuario(Usuario usuario)
+        {
+            usuario = new Usuario();
+
+        }
+        public async Task UpdateUsuario(Usuario usuario)
+        {
+            usuario = new Usuario();
         }
     }
 }

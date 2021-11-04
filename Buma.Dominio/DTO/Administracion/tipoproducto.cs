@@ -16,15 +16,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Buma.Dominio.DTO.Administracion
+namespace buma.dominio.DTO.Administracion
 {
-    public class tipoproducto
+    public class TipoProducto
     {
-        public int idtipoproducto
+        public int idTipoProducto
         {
             get;set;
         }
-        public string codigotipoproducto
+        public string codigoTipoProducto
         {
             get;set;
         }
