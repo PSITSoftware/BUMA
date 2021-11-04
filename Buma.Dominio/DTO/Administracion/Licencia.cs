@@ -16,7 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Buma.Dominio.DTO.Administracion
+namespace buma.dominio.DTO.Administracion
 {
      public class Licencia
     {

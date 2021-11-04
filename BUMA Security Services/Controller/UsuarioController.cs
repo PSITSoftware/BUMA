@@ -57,7 +57,7 @@ namespace psit.buma.security.services.Controllers
         public async Task<List<Usuario>> GetUsuariosListAsync()
         {
 
-            return await _usuarioServicio.GetUsuariosListAsync();
+            return await _usuarioServicio.GetUsuarioListAsync();
         }
 
         /// <summary>
