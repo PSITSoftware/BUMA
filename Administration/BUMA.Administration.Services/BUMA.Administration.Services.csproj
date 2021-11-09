@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{31EF8F09-196D-4DB6-8881-A23900FC0247}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BUMA.Administration.Services</RootNamespace>
+    <AssemblyName>BUMA.Administration.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementations\CajaServicio.cs" />
+    <Compile Include="Implementations\ControlServicio.cs" />
+    <Compile Include="Implementations\EmpresaServicio.cs" />
+    <Compile Include="Implementations\InsumoServicio.cs" />
+    <Compile Include="Implementations\LicenciaServicio.cs" />
+    <Compile Include="Implementations\MetodoPagoServicio.cs" />
+    <Compile Include="Implementations\ProductoServicio.cs" />
+    <Compile Include="Implementations\ProvedorServicio.cs" />
+    <Compile Include="Implementations\RegimenServicio.cs" />
+    <Compile Include="Implementations\SucursalServicio.cs" />
+    <Compile Include="Implementations\TipoDocumentoServicios.cs" />
+    <Compile Include="Implementations\TipoEmpresaServicio.cs" />
+    <Compile Include="Implementations\TipoProductoServicio.cs" />
+    <Compile Include="Implementations\TransaccionServicio.cs" />
+    <Compile Include="Implementations\UnidadServicio.cs" />
+    <Compile Include="Interfaces\ICajaServicio.cs" />
+    <Compile Include="Interfaces\IControlServicio.cs" />
+    <Compile Include="Interfaces\IEmpresaServicio.cs" />
+    <Compile Include="Interfaces\IInsumoServicio.cs" />
+    <Compile Include="Interfaces\ILicenciaServico.cs" />
+    <Compile Include="Interfaces\IMetodoPagoServicio.cs" />
+    <Compile Include="Interfaces\IProductoServicio.cs" />
+    <Compile Include="Interfaces\IProvedorServicio.cs" />
+    <Compile Include="Interfaces\IRegimenServicio.cs" />
+    <Compile Include="Interfaces\ISucursalServicio.cs" />
+    <Compile Include="Interfaces\ITipoDocumentoServicio.cs" />
+    <Compile Include="Interfaces\ITipoEmpresaServicio.cs" />
+    <Compile Include="Interfaces\ITipoProductoServicio.cs" />
+    <Compile Include="Interfaces\ITransaccionServicio.cs" />
+    <Compile Include="Interfaces\IUnidadServicio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\BUMA.Domain\BUMA.Domain.csproj">
+      <Project>{041e7b94-5b3d-4366-b245-8a8bf11156f4}</Project>
+      <Name>BUMA.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BUMA.Administration.Persistence\BUMA.Administration.Persistence.csproj">
+      <Project>{fea53514-78ff-4c97-8a94-d19c95826dae}</Project>
+      <Name>BUMA.Administration.Persistence</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

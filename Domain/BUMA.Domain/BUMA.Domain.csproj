@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{041E7B94-5B3D-4366-B245-8A8BF11156F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BUMA.Domain</RootNamespace>
+    <AssemblyName>BUMA.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DTO\Administration\Caja.cs" />
+    <Compile Include="DTO\Administration\Control.cs" />
+    <Compile Include="DTO\Administration\Empresa.cs" />
+    <Compile Include="DTO\Administration\Insumo.cs" />
+    <Compile Include="DTO\Administration\Licencia.cs" />
+    <Compile Include="DTO\Administration\Metodopago.cs" />
+    <Compile Include="DTO\Administration\Producto.cs" />
+    <Compile Include="DTO\Administration\Provedor.cs" />
+    <Compile Include="DTO\Administration\Regimen.cs" />
+    <Compile Include="DTO\Administration\Sucursal.cs" />
+    <Compile Include="DTO\Administration\Tipodocumento.cs" />
+    <Compile Include="DTO\Administration\tipoempresa.cs" />
+    <Compile Include="DTO\Administration\tipoproducto.cs" />
+    <Compile Include="DTO\Administration\Trasaccion.cs" />
+    <Compile Include="DTO\Administration\Unidad.cs" />
+    <Compile Include="DTO\Bussiness\Cliente.cs" />
+    <Compile Include="DTO\Bussiness\Compras.cs" />
+    <Compile Include="DTO\Bussiness\Detallecompra.cs" />
+    <Compile Include="DTO\Bussiness\Detallefactura.cs" />
+    <Compile Include="DTO\Bussiness\Detallepedido.cs" />
+    <Compile Include="DTO\Bussiness\Factura.cs" />
+    <Compile Include="DTO\Bussiness\Inventario.cs" />
+    <Compile Include="DTO\Bussiness\Pedido.cs" />
+    <Compile Include="DTO\Bussiness\Sububicacion.cs" />
+    <Compile Include="DTO\Bussiness\Ubicacion.cs" />
+    <Compile Include="DTO\Security\Modulo.cs" />
+    <Compile Include="DTO\Security\Permiso.cs" />
+    <Compile Include="DTO\Security\Programa.cs" />
+    <Compile Include="DTO\Security\Programarol.cs" />
+    <Compile Include="DTO\Security\Rol.cs" />
+    <Compile Include="DTO\Security\RolporUsuario.cs" />
+    <Compile Include="DTO\Security\Usuario.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
