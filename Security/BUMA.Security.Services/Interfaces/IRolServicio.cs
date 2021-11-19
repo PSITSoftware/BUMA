@@ -24,11 +24,11 @@ namespace BUMA.Security.Services.Interfaces
 {
     public interface IRolServicio
     {
-        public Task<List<Rol>> GetRolListAsync();
+        Task<List<Rol>> GetRolListAsync();
 
-        public Task<Rol> GetRolByIdAsync(int idRol);
-        public  Task InsertRol(Rol rol);
-        public Task UpdateRol(Rol rol);
+        Task<Rol> GetRolByIdAsync(int idRol);
+        Task InsertRol(Rol rol);
+        Task UpdateRol(Rol rol);
     }
     
 }

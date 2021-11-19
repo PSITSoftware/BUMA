@@ -17,33 +17,25 @@
 // 0.1	30/10/2021	    Edwn Andres Florez	    Desarrollo Inicial
 
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using System.Security.Policy;
-using System.Data;
 using BUMA.Domain.DTO.Administration;
 using BUMA.Administration.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Administration
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class TipoProductoController : Controller
+   
+    public class TipoProductoController : ApiController
     {
 
-        private readonly   ITipoProductoServicio _TipoproductoServicio;
-        public TipoProductoController(IConfiguration configuration, ITipoProductoServicio tipoproductoServicio)
+        private readonly   ITipoProductoServicio _tipoproductoServicio;
+        public TipoProductoController(ITipoProductoServicio tipoproductoServicio)
         {
-            _TipoproductoServicio = tipoproductoServicio;
+            _tipoproductoServicio = tipoproductoServicio;
         }
 
 
@@ -51,59 +43,82 @@ namespace BUMA.Web.API.Controllers.Administration
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/TipoProducto/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de tipos de producto", typeof(TipoProducto))]
         [HttpGet]
-        public async Task<List<TipoProducto>> GetTipoProductoListAsync()
-        {
-
-            return await _TipoproductoServicio.GetTipoProductoListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<TipoProducto> GetRegimenByIdAsync(int idTipoProducto)
-        {
-            var tipoproducto = new TipoProducto();
-            return tipoproducto;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param //name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertTipoProducto(TipoProducto tipoProducto)
+        public async Task<IHttpActionResult> GetTipoProductoListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _tipoproductoServicio.GetTipoProductoListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param //name="regimen"></param>
+        /// <param name="idtipoproducto"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateTipoProducto(TipoProducto tipoProducto)
+        [Route("api/Tipoproducto/GetTipoproductoById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los tipos de producto", typeof(TipoProducto))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetTipoProductoByIdAsync(int idTipoproducto)
         {
             try
             {
-
+                var result = await Task.Run(() => _tipoproductoServicio.GetTipoProductoByIdAsync(idTipoproducto));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="tipoproducto"></param>
+        /// <returns></returns>
+        [Route("api/tipoproducto/InsertTipoproducto")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por tipo de producto", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertTipoProducto(TipoProducto tipoproducto)
+        {
+            try
+            {
+                await _tipoproductoServicio.InsertTipoProducto(tipoproducto);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="tipoproducto"></param>
+        /// <returns></returns>
+        [Route("api/TipoProducto/UpdateTipoProducto")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por tipo de producto", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateTipoproducto(TipoProducto tipoproducto)
+        {
+            try
+            {
+                await _tipoproductoServicio.UpdateTipoProducto(tipoproducto);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

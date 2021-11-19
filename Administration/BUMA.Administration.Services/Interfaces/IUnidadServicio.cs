@@ -28,10 +28,10 @@ namespace BUMA.Administration.Services.Interfaces
 {
     public interface IUnidadServicio
     {
-        public Task<List<Unidad>> GetUnidadListAsync();
+        Task<List<Unidad>> GetUnidadListAsync();
 
-        public Task<Unidad> GetUnidadByIdAsync(int idUnidad);
-        public Task InsertUnidad(Unidad unidad);
-        public Task UpdateUnidad(Unidad unidad);
+        Task<Unidad> GetUnidadByIdAsync(int idUnidad);
+        Task InsertUnidad(Unidad unidad);
+        Task UpdateUnidad(Unidad unidad);
     }
 }

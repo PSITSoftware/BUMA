@@ -18,21 +18,22 @@
 
 
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BUMA.Domain.DTO.Bussiness;
 using BUMA.Bussiness.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Bussiness
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class DetallePedidoController : Controller
+    public class DetallePedidoController : ApiController
     {
-        private readonly IDetallePedidoServicio _DetallepedidoServicio;
-        public DetallePedidoController(IConfiguration configuration, IDetallePedidoServicio DetallepedidoServicio)
+        private readonly IDetallePedidoServicio _detallepedidoServicio;
+        public DetallePedidoController(IDetallePedidoServicio DetallepedidoServicio)
         {
-            _DetallepedidoServicio = DetallepedidoServicio;
+            _detallepedidoServicio = DetallepedidoServicio;
         }
 
 
@@ -40,60 +41,82 @@ namespace BUMA.Web.API.Controllers.Bussiness
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/DetallePedido/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los Detalles de pedido", typeof(Detallepedido))]
         [HttpGet]
-        public async Task<List<Detallepedido>> GetDetallepedidoListAsync()
-        {
-
-            //object __DetallecompraServicio = null;
-            return await _DetallepedidoServicio.GetDetallepedidoListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<Detallepedido> GetDetallepedidoByIdAsync(int idDetallepedido)
-        {
-            var detallepedido = new Detallepedido();
-            return detallepedido;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertDetallepedido(Detallepedido detallepedido)
+        public async Task<IHttpActionResult> GetDetallePedidoListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _detallepedidoServicio.GetDetallepedidoListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param //name="usuario"></param>
+        /// <param name="iddetallepedido"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateDetallePedido(Detallepedido detallepedido)
+        [Route("api/DetallePedido/GetDetallePedidoById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de detalles de pedido", typeof(Detallepedido))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetDetallepedidoByIdAsync(int idDetallepedido)
         {
             try
             {
-
+                var result = await Task.Run(() => _detallepedidoServicio.GetDetallepedidoByIdAsync(idDetallepedido));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de los clientes
+        /// </summary>
+        /// <param name="detallepedido"></param>
+        /// <returns></returns>
+        [Route("api/DetallePedido/InsertDetallePedido")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por detalles de pedido", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertDetallepedido(Detallepedido detallepedido)
+        {
+            try
+            {
+                await _detallepedidoServicio.InsertDetallepedido(detallepedido);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="detallepedido"></param>
+        /// <returns></returns>
+        [Route("api/detallespedido/UpdateDetallePedido")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por los detalles de pedido", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateDetallePedido(Detallepedido detallepedido)
+        {
+            try
+            {
+                await _detallepedidoServicio.UpdateDetallepedido(detallepedido);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

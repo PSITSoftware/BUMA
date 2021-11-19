@@ -29,10 +29,10 @@ namespace BUMA.Administration.Services.Interfaces
 {
     public interface ISucursalServicio
     {
-        public Task<List<Sucursal>> GetSucursalListAsync();
+        Task<List<Sucursal>> GetSucursalListAsync();
 
-        public Task<Sucursal> GetSucursalByIdAsync(int idSucursal);
-        public Task InsertSucursal(Sucursal sucursal);
-        public Task UpdateSucursal(Sucursal sucursal);
+        Task<Sucursal> GetSucursalByIdAsync(int idSucursal);
+        Task InsertSucursal(Sucursal sucursal);
+        Task UpdateSucursal(Sucursal sucursal);
     }
 }

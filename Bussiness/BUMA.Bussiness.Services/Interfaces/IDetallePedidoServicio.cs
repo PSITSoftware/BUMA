@@ -27,10 +27,10 @@ namespace BUMA.Bussiness.Services.Interfaces
 {
     public interface IDetallePedidoServicio
     {
-        public Task<List<Detallepedido>> GetDetallepedidoListAsync();
+        Task<List<Detallepedido>> GetDetallepedidoListAsync();
 
-        public Task<Detallepedido> GetDetallepedidoByIdAsync(int idDetallepedido);
-        public Task InsertDetallepedido(Detallepedido detallepedido);
-        public Task UpdateDetallepedido(Detallepedido detallepedido);
+        Task<Detallepedido> GetDetallepedidoByIdAsync(int idDetallepedido);
+        Task InsertDetallepedido(Detallepedido detallepedido);
+        Task UpdateDetallepedido(Detallepedido detallepedido);
     }
 }

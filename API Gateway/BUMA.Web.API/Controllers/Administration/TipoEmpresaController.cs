@@ -17,32 +17,24 @@
 // 0.1	30/10/2021	    Edwn Andres Florez	    Desarrollo Inicial
 
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using System.Security.Policy;
-using System.Data;
 using BUMA.Domain.DTO.Administration;
 using BUMA.Administration.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Administration
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class TipoEmpresaController : Controller
+    
+    public class TipoEmpresaController : ApiController
     {
-        private readonly ITipoEmpresaServicio _TipoempresaServicio;
-        public TipoEmpresaController(IConfiguration configuration, ITipoEmpresaServicio tipoempresaServicio)
+        private readonly ITipoEmpresaServicio _tipoempresaServicio;
+        public TipoEmpresaController(ITipoEmpresaServicio tipoempresaServicio)
         {
-            _TipoempresaServicio = tipoempresaServicio;
+            _tipoempresaServicio = tipoempresaServicio;
         }
 
 
@@ -50,59 +42,82 @@ namespace BUMA.Web.API.Controllers.Administration
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/TipoEmpresa/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de tipos de empresa", typeof(TipoEmpresa))]
         [HttpGet]
-        public async Task<List<TipoEmpresa>> GetTipoEmpresaListAsync()
-        {
-
-            return await _TipoempresaServicio.GetTipoEmpresaListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<TipoEmpresa> GetTipoEmpresaByIdAsync(int idTipoEmpresa)
-        {
-            var tipoempresa = new TipoEmpresa();
-            return tipoempresa;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param //name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertTipoEmpresa(TipoEmpresa tipoempresa)
+        public async Task<IHttpActionResult> GetTipoEmpresaListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _tipoempresaServicio.GetTipoEmpresaListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param //name="regimen"></param>
+        /// <param name="idtipoempresa"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateTipoEmpresa(TipoEmpresa tipoempresa)
+        [Route("api/Tipoempresa/GetTipoempresaById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los tipos de empresa", typeof(TipoEmpresa))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetTipoEmpresaByIdAsync(int idTipoempresa)
         {
             try
             {
-
+                var result = await Task.Run(() => _tipoempresaServicio.GetTipoEmpresaByIdAsync(idTipoempresa));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="tipoempresa"></param>
+        /// <returns></returns>
+        [Route("api/tipoempresa/InsertTipoempresa")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por tipo de empresa", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertTipoEmpresa(TipoEmpresa tipoempresa)
+        {
+            try
+            {
+                await _tipoempresaServicio.InsertTipoEmpresa(tipoempresa);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="tipoempresa"></param>
+        /// <returns></returns>
+        [Route("api/TipoEmpresa/UpdateTipoEmpresa")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por tipo de empresa", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateTipoempresa(TipoEmpresa tipoempresa)
+        {
+            try
+            {
+                await _tipoempresaServicio.UpdateTipoEmpresa(tipoempresa);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

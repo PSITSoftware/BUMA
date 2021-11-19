@@ -16,29 +16,21 @@
 // 0.1	29/10/2021	    Edwn Andres Florez	    Desarrollo Inicial
 
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using System.Security.Policy;
-using System.Data;
 using BUMA.Domain.DTO.Administration;
 using BUMA.Administration.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 namespace BUMA.Web.API.Controllers.Administration
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class MetododePagoController : Controller
+
+    public class MetododePagoController : ApiController
     {
         private readonly IMetodoPagoServicio _metodopagoServicio;
-        public MetododePagoController(IConfiguration configuration, IMetodoPagoServicio metododepagoServicio)
+        public MetododePagoController(IMetodoPagoServicio metododepagoServicio)
         {
             _metodopagoServicio = metododepagoServicio;
         }
@@ -48,41 +40,61 @@ namespace BUMA.Web.API.Controllers.Administration
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/Metodopago/GetMetodopagoList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de metodosdepago", typeof(Metodopago))]
         [HttpGet]
-        public async Task<List<Metodopago>> GetMetodoPagoListAsync()
-        {
-
-            return await _metodopagoServicio.GetMetodoPagoListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<Metodopago> GetMetodoPagoByIdAsync(int idmetodopago)
-        {
-            var metodopago = new Metodopago();
-            return metodopago;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertMetodoPago(Metodopago metodopago)
+        public async Task<IHttpActionResult> GetMetodopagoListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _metodopagoServicio.GetMetodoPagoListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Obtiene los Caja por Identificador
+        /// </summary>
+        /// <param name="idMetodopago"></param>
+        /// <returns></returns>
+        [Route("api/Metodopago/GetMetodopagoById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de metodos de pago", typeof(Metodopago))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetMetodopagoByIdAsync(int idMetodopago)
+        {
+            try
+            {
+                var result = await Task.Run(() => _metodopagoServicio.GetMetodoPagoByIdAsync(idMetodopago));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Inserta la informaciòn de la caja
+        /// </summary>
+        /// <param name="metodopago"></param>
+        /// <returns></returns>
+        [Route("api/metodopago/InsertMetododepago")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por metodo de pago", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> Insertmetodopago(Metodopago metodopago)
+        {
+            try
+            {
+                await _metodopagoServicio.InsertMetodopago(metodopago);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
@@ -91,16 +103,19 @@ namespace BUMA.Web.API.Controllers.Administration
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
+        [Route("api/Metodopago/UpdateMetodopago")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por metododepago", typeof(HttpResponseMessage))]
         [HttpPost]
-        public async Task UpdateMetodoPago(Metodopago metodopago)
+        public async Task<IHttpActionResult> UpdateMetodopago(Metodopago metodopago)
         {
             try
             {
-
+                await _metodopagoServicio.UpdateMetodopago(metodopago);
+                return Ok();
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

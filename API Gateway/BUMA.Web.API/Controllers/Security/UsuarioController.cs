@@ -18,20 +18,22 @@
 
 
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BUMA.Domain.DTO.Security;
 using BUMA.Security.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace psit.BUMA.Web.API.Controllers.Security
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
     
-    public class UsuarioController : Controller
+    
+    public class UsuarioController : ApiController
     {
         private readonly IUsuarioServicio _usuarioServicio;
-        public UsuarioController(IConfiguration configuration, IUsuarioServicio usuarioServicio)
+        public UsuarioController(IUsuarioServicio usuarioServicio)
         {
             _usuarioServicio = usuarioServicio;
         }
@@ -41,59 +43,82 @@ namespace psit.BUMA.Web.API.Controllers.Security
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/Usuario/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los Usuario", typeof(Usuario))]
         [HttpGet]
-        public async Task<List<Usuario>> GetUsuariosListAsync()
-        {
-
-            return await _usuarioServicio.GetUsuarioListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<Usuario> GetUsuarioByIdAsync(int idUsuario)
-        {
-            var usuario = new Usuario();
-            return usuario;
-        }
-       
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertUsuario(Usuario usuario)
+        public async Task<IHttpActionResult> GetUsuarioListAsync()
         {
             try
             {
-              
+                var result = await Task.Run(() => _usuarioServicio.GetUsuarioListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateUsuario(Usuario usuario)
+        [Route("api/usuario/GetUsuarioById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los usuario", typeof(Usuario))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetusuarioByIdAsync(int idusuario)
         {
             try
             {
-
+                var result = await Task.Run(() => _usuarioServicio.GetUsuarioByIdAsync(idusuario));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de los clientes
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        [Route("api/usuario/InsertUsuario")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por  usuario", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertRolporUsuario(Usuario usuario)
+        {
+            try
+            {
+                await _usuarioServicio.InsertUsuario(usuario);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        [Route("api/usuario/UpdateUsuario")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por usuario", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateUsuario(Usuario usuario)
+        {
+            try
+            {
+                await _usuarioServicio.UpdateUsuario(usuario);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

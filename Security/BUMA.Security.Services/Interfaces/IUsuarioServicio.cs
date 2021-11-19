@@ -24,10 +24,10 @@ namespace BUMA.Security.Services.Interfaces
 {
     public interface IUsuarioServicio
     {
-        public Task<List<Usuario>> GetUsuarioListAsync();
+        Task<List<Usuario>> GetUsuarioListAsync();
 
-        public Task<Usuario> GetUsuarioByIdAsync(int idUsuario);
-        public Task InsertUsuario(Usuario usuario);
-        public Task UpdateUsuario(Usuario usuario);
+        Task<Usuario> GetUsuarioByIdAsync(int idUsuario);
+        Task InsertUsuario(Usuario usuario);
+        Task UpdateUsuario(Usuario usuario);
     }
 }

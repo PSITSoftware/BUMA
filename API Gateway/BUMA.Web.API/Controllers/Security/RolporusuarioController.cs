@@ -16,21 +16,24 @@
 // ---	-------------	----------------------	-----------------------------------
 // 0.1	20/10/2021	    Silvio Alejandro Reyes Jota	    Desarrollo Inicial
 
+
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BUMA.Domain.DTO.Security;
 using BUMA.Security.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Security
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
 
-    public class RolporusuarioController : Controller
+
+    public class RolporusuarioController : ApiController
     {
         private readonly IRolporusuarioServicio _rolporusuarioServicio;
-        public RolporusuarioController(IConfiguration configuration, IRolporusuarioServicio RolporusuarioServicio)
+        public RolporusuarioController(IRolporusuarioServicio RolporusuarioServicio)
         {
             _rolporusuarioServicio = RolporusuarioServicio;
         }
@@ -40,58 +43,82 @@ namespace BUMA.Web.API.Controllers.Security
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/Rolporusuario/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los Rol por usuario", typeof(RolxUsuario))]
         [HttpGet]
-        public async Task<List<RolxUsuario>> GetRolporUsuarioListAsync()
-        {
-            return await _rolporusuarioServicio.GetRolporUsuarioListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<RolxUsuario> GetRolporusuarioByIdAsync(int idRolporusuario)
-        {
-            var rolporusuario = new RolxUsuario();
-            return rolporusuario;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertUsuario(RolxUsuario rolporusuario)
+        public async Task<IHttpActionResult> GetRolporusuarioListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _rolporusuarioServicio.GetRolporUsuarioListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param name="usuario"></param>
+        /// <param name="idrolporusuario"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateRolporUsuario(RolxUsuario rolporusuario)
+        [Route("api/rolporusuario/GetrolporusuarioById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los Rol por usuario", typeof(RolxUsuario))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetRolporusuarioByIdAsync(int idrolporusuario)
         {
             try
             {
-
+                var result = await Task.Run(() => _rolporusuarioServicio.GetRolporUsuarioByIdAsync(idrolporusuario));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de los clientes
+        /// </summary>
+        /// <param name="rolporusuario"></param>
+        /// <returns></returns>
+        [Route("api/Rolporusuario/InsertRolporUsuario")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por rol por usuario", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertRolporUsuario(RolxUsuario rolporusuario)
+        {
+            try
+            {
+                await _rolporusuarioServicio.InsertRolporUsuario(rolporusuario);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="rolporusuario"></param>
+        /// <returns></returns>
+        [Route("api/Rolporusuario/UpdateRolporUsuario")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por rolporusuario", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateRolporUsuario(RolxUsuario rolporusuario)
+        {
+            try
+            {
+                await _rolporusuarioServicio.UpdateRolporUsuario(rolporusuario);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

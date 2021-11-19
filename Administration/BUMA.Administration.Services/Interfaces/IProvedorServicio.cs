@@ -27,10 +27,10 @@ namespace BUMA.Administration.Services.Interfaces
 {
     public interface IProvedorServicio
     {
-        public Task<List<Provedor>> GetProvedorListAsync();
+        Task<List<Provedor>> GetProvedorListAsync();
 
-        public Task<Provedor> GetProvedorByIdAsync(int idProvedor);
-        public Task InsertProvedor(Provedor provedor);
-        public Task UpdateProvedor(Provedor provedor);
+        Task<Provedor> GetProvedorByIdAsync(int idProvedor);
+        Task InsertProvedor(Provedor provedor);
+        Task UpdateProvedor(Provedor provedor);
     }
 }

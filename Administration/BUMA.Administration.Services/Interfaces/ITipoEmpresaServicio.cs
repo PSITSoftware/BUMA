@@ -27,10 +27,10 @@ namespace BUMA.Administration.Services.Interfaces
 {
     public interface ITipoEmpresaServicio
     {
-        public Task<List<TipoEmpresa>> GetTipoEmpresaListAsync();
+        Task<List<TipoEmpresa>> GetTipoEmpresaListAsync();
 
-        public Task<TipoEmpresa> GetTipoEmpresaByIdAsync(int idTipoempresa);
-        public Task InsertTipoEmpresa(TipoEmpresa tipoempresa);
-        public Task UpdateTipoEmpresa(TipoEmpresa tipoempresa);
+        Task<TipoEmpresa> GetTipoEmpresaByIdAsync(int idTipoempresa);
+        Task InsertTipoEmpresa(TipoEmpresa tipoempresa);
+        Task UpdateTipoEmpresa(TipoEmpresa tipoempresa);
     }
 }

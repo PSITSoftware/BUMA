@@ -17,19 +17,21 @@
 // 0.1	20/10/2021	    Silvio Alejandro Reyes Jota	    Desarrollo Inicial
 
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BUMA.Domain.DTO.Security;
 using BUMA.Security.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Security
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class ProgramarolController : Controller
+
+    public class ProgramarolController : ApiController
     {
         private readonly IProgramarolServicio _programarolServicio;
-        public ProgramarolController(IConfiguration configuration, IProgramarolServicio programarolServicio)
+        public ProgramarolController(IProgramarolServicio programarolServicio)
         {
             _programarolServicio = programarolServicio;
         }
@@ -39,59 +41,82 @@ namespace BUMA.Web.API.Controllers.Security
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/Programarol/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los programarol", typeof(Programarol))]
         [HttpGet]
-        public async Task<List<Programarol>> GetProgramarolListAsync()
+        public async Task<IHttpActionResult> GetProgramarolListAsync()
         {
-
-            return await _programarolServicio.GetProgramarolListAsync();
+            try
+            {
+                var result = await Task.Run(() => _programarolServicio.GetProgramarolListAsync());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
         }
 
         /// <summary>
-        /// Obtiene los Usuarios por Identificador
+        /// Obtiene los Caja por Identificador
         /// </summary>
         /// <param name="idprogramarol"></param>
         /// <returns></returns>
+        [Route("api/Programarol/GetProgramarolById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los programarol", typeof(Programarol))]
         [HttpGet]
-        public async Task<Programarol> GetProgramarolByIdAsync(int idProgramarol)
-        {
-            var programarol = new Programarol();
-            return programarol;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertProgramarol(Programarol programarol)
+        public async Task<IHttpActionResult> GetProgramarolByIdAsync(int idprogramarol)
         {
             try
             {
-
+                var result = await Task.Run(() => _programarolServicio.GetProgramarolByIdAsync(idprogramarol));
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Inserta la informaciòn de los clientes
         /// </summary>
-        /// <param name="usuario"></param>
+        /// <param name="programarol"></param>
         /// <returns></returns>
+        [Route("api/Programarol/InsertProgramarol")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por programarol", typeof(HttpResponseMessage))]
         [HttpPost]
-        public async Task UpdateProgramarol(Programarol programarol)
+        public async Task<IHttpActionResult> InsertProgramarol(Programarol programarol)
         {
             try
             {
-
+                await _programarolServicio.InsertProgramarol(programarol);
+                return Ok();
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="programarol"></param>
+        /// <returns></returns>
+        [Route("api/Programarol/UpdateProgramarol")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por programarol", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdatePermisos(Programarol programarol)
+        {
+            try
+            {
+                await _programarolServicio.UpdateProgramarol(programarol);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }
