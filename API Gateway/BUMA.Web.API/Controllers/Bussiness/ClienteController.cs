@@ -17,22 +17,24 @@
 // 0.1	27/10/2021	    Edwn Andres Florez	    Desarrollo Inicial
 
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BUMA.Domain.DTO.Bussiness;
 using BUMA.Bussiness.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Bussiness
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
+    
 
-    public class ClienteController : Controller
+    public class ClienteController : ApiController
     {
-        private readonly IClienteServicio _ClienteServicio;
-        public ClienteController(IConfiguration configuration, IClienteServicio clienteServicio)
+        private readonly IClienteServicio _clienteServicio;
+        public ClienteController(IClienteServicio clienteServicio)
         {
-            _ClienteServicio = clienteServicio;
+            _clienteServicio = clienteServicio;
         }
 
 
@@ -40,60 +42,82 @@ namespace BUMA.Web.API.Controllers.Bussiness
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/Cliente/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de Clientes", typeof(Cliente))]
         [HttpGet]
-        public async Task<List<Cliente>> GetDetallefacturaListAsync()
-        {
-
-            //object __DetallecompraServicio = null;
-            return await _ClienteServicio.GetClienteListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<Cliente> GetClienteByIdAsync(int idCliente)
-        {
-            var cliente = new Cliente();
-            return cliente;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertCliente(Cliente cliente)
+        public async Task<IHttpActionResult> GetClienteListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _clienteServicio.GetClienteListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param name="usuario"></param>
+        /// <param name="idcliente"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateCliente(Cliente cliente)
+        [Route("api/Cliente/GetClienteById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de clientes", typeof(Cliente))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetClienteByIdAsync(int idCliente)
         {
             try
             {
-
+                var result = await Task.Run(() => _clienteServicio.GetClienteByIdAsync(idCliente));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de los clientes
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <returns></returns>
+        [Route("api/Cliente/InsertCliente")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por Clientes", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertCliente(Cliente cliente)
+        {
+            try
+            {
+                await _clienteServicio.InsertCliente(cliente);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <returns></returns>
+        [Route("api/cliente/UpdateCliente")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por los Clientes", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateCliente(Cliente cliente)
+        {
+            try
+            {
+                await _clienteServicio.UpdateCliente(cliente);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

@@ -28,10 +28,10 @@ namespace BUMA.Administration.Services.Interfaces
 {
     public interface IProductoServicio
     {
-        public Task<List<producto>> GetProductoListAsync();
+        Task<List<producto>> GetProductoListAsync();
 
-        public Task<producto> GetProductoByIdAsync(int idProducto);
-        public Task InsertProducto(producto producto);
-        public Task UpdateProducto(producto producto);
+        Task<producto> GetProductoByIdAsync(int idProducto);
+        Task InsertProducto(producto producto);
+        Task UpdateProducto(producto producto);
     }
 }

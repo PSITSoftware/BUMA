@@ -17,30 +17,22 @@
 // 0.1	29/10/2021	    Edwn Andres Florez	    Desarrollo Inicial
 
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using System.Security.Policy;
-using System.Data;
 using BUMA.Domain.DTO.Administration;
 using BUMA.Administration.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Administration
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class SucursalController : Controller
+    
+    public class SucursalController : ApiController
     {
         private readonly ISucursalServicio _sucursalServicio;
-        public SucursalController(IConfiguration configuration, ISucursalServicio sucursalServicio)
+        public SucursalController(ISucursalServicio sucursalServicio)
         {
             _sucursalServicio = sucursalServicio;
         }
@@ -50,59 +42,82 @@ namespace BUMA.Web.API.Controllers.Administration
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/Sucursal/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de sucursal", typeof(Sucursal))]
         [HttpGet]
-        public async Task<List<Sucursal>> GetSucursalListAsync()
-        {
-
-            return await _sucursalServicio.GetSucursalListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<Sucursal> GetSucursalByIdAsync(int idSucursal)
-        {
-            var sucursal = new Sucursal();
-            return sucursal;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertSucursal(Sucursal sucursal)
+        public async Task<IHttpActionResult> GetSucrsalListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _sucursalServicio.GetSucursalListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param name="usuario"></param>
+        /// <param name="idsucursal"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateSucursal(Sucursal sucursal)
+        [Route("api/Sucursal/GetSucursalById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de sucursales", typeof(Sucursal))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetSucursalByIdAsync(int idSucursal)
         {
             try
             {
-
+                var result = await Task.Run(() => _sucursalServicio.GetSucursalByIdAsync(idSucursal));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="regimen"></param>
+        /// <returns></returns>
+        [Route("api/sucursal/InsertSucursal")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por sucursal", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertSucursal(Sucursal sucursal)
+        {
+            try
+            {
+                await _sucursalServicio.InsertSucursal(sucursal);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="sucursal"></param>
+        /// <returns></returns>
+        [Route("api/Sucursal/UpdateSucursal")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por Sucursal", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateSucursal(Sucursal sucursal)
+        {
+            try
+            {
+                await _sucursalServicio.UpdateSucursal(sucursal);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

@@ -28,10 +28,10 @@ namespace BUMA.Bussiness.Services.Interfaces
     public interface IInventarioServicio
     {
 
-        public Task<List<Inventario>> GetInventarioListAsync();
+        Task<List<Inventario>> GetInventarioListAsync();
 
-        public Task<Inventario> GetInventarioByIdAsync(int idInventario);
-        public Task InsertInventario(Inventario inventario);
-        public Task UpdateInventario(Inventario inventario);
+        Task<Inventario> GetInventarioByIdAsync(int idInventario);
+        Task InsertInventario(Inventario inventario);
+        Task UpdateInventario(Inventario inventario);
     }
 }

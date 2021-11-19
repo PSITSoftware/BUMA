@@ -28,10 +28,10 @@ namespace BUMA.Administration.Services.Interfaces
 {
     public interface ITransaccionServicio
     {
-        public Task<List<Trasaccion>> GetTransaccionListAsync();
+        Task<List<Trasaccion>> GetTransaccionListAsync();
 
-        public Task<Trasaccion> GetTransaccionByIdAsync(int idTrasaccion);
-        public Task InsertTrasaccion(Trasaccion trasaccion);
-        public Task UpdateTrasaccion(Trasaccion trasaccion);
+        Task<Trasaccion> GetTransaccionByIdAsync(int idTrasaccion);
+        Task InsertTrasaccion(Trasaccion trasaccion);
+        Task UpdateTrasaccion(Trasaccion trasaccion);
     }
 }

@@ -57,9 +57,9 @@ namespace BUMA.Web.API.Controllers.Administration
         }
 
         /// <summary>
-        /// Obtiene los Usuarios por Identificador
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param name="idUsuario"></param>
+        /// <param name="idCaja"></param>
         /// <returns></returns>
         [Route("api/Caja/GetCajaById")]
         [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de preguntas personalizadas", typeof(Caja))]
@@ -78,9 +78,9 @@ namespace BUMA.Web.API.Controllers.Administration
         }
 
         /// <summary>
-        /// Inserta la informaciòn del usuario
+        /// Inserta la informaciòn de la caja
         /// </summary>
-        /// <param name="usuario"></param>
+        /// <param name="caja"></param>
         /// <returns></returns>
         [Route("api/Caja/InsertCaja")]
         [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por guardado de Preguntas Personalizadas", typeof(HttpResponseMessage))]

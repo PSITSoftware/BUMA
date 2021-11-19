@@ -25,10 +25,10 @@ namespace BUMA.Security.Services.Interfaces
 {
     public interface IRolporusuarioServicio
     {
-        public Task<List<RolxUsuario>> GetRolporUsuarioListAsync();
+        Task<List<RolxUsuario>> GetRolporUsuarioListAsync();
 
-        public Task<RolxUsuario> GetRolporUsuarioByIdAsync(int idRolporUsuario);
-        public Task InsertRolporUsuario(RolxUsuario rolporusuario);
-        public Task UpdateRolporUsuario(RolxUsuario rolporusuario);
+        Task<RolxUsuario> GetRolporUsuarioByIdAsync(int idRolporUsuario);
+        Task InsertRolporUsuario(RolxUsuario rolporusuario);
+        Task UpdateRolporUsuario(RolxUsuario rolporusuario);
     }
 }

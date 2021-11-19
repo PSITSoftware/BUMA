@@ -18,21 +18,23 @@
 
 
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BUMA.Domain.DTO.Bussiness;
 using BUMA.Bussiness.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Bussiness
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class DetalleFacturaController : Controller
+
+    public class DetalleFacturaController : ApiController
     {
-        private readonly IDetalleFacturaServicio _DetallefacturaServicio;
-        public DetalleFacturaController(IConfiguration configuration, IDetalleFacturaServicio DetallefacturaServicio)
+        private readonly IDetalleFacturaServicio _detallefacturaServicio;
+        public DetalleFacturaController( IDetalleFacturaServicio DetallefacturaServicio)
         {
-            _DetallefacturaServicio = DetallefacturaServicio;
+            _detallefacturaServicio = DetallefacturaServicio;
         }
 
 
@@ -40,60 +42,82 @@ namespace BUMA.Web.API.Controllers.Bussiness
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/DetalleFactura/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los Detalles de factura", typeof(Detallefactura))]
         [HttpGet]
-        public async Task<List<Detallefactura>> GetDetallefacturaListAsync()
-        {
-
-            //object __DetallecompraServicio = null;
-            return await _DetallefacturaServicio.GetDetallefacturaListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<Detallefactura> GetDetallefacturaByIdAsync(int idDetallefactura)
-        {
-            var detallefactura = new Detallefactura();
-            return detallefactura;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertDetallefactura(Detallefactura detallefactura)
+        public async Task<IHttpActionResult> GetDetalleFacturaListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _detallefacturaServicio.GetDetallefacturaListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param //name="usuario"></param>
+        /// <param name="iddetallefactura"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateDetalleFactura(Detallefactura detallefactura)
+        [Route("api/DetalleFactura/GetDetalleFacturaById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de detalles de factura", typeof(Detallefactura))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetDetallefacturaByIdAsync(int idDetallefactura)
         {
             try
             {
-
+                var result = await Task.Run(() => _detallefacturaServicio.GetDetallefacturaByIdAsync(idDetallefactura));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de los clientes
+        /// </summary>
+        /// <param name="detallefactura"></param>
+        /// <returns></returns>
+        [Route("api/DetalleFactura/InsertDetalleFactura")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por detalles de factura", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertDetalleFactura(Detallefactura detallefactura)
+        {
+            try
+            {
+                await _detallefacturaServicio.InsertDetallefactura(detallefactura);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="detallefactura"></param>
+        /// <returns></returns>
+        [Route("api/detallesfactura/UpdateDetalleFactura")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por los detalles de facturas", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateDetalleFacturas(Detallefactura detallefactura)
+        {
+            try
+            {
+                await _detallefacturaServicio.UpdateDetallefactura(detallefactura);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

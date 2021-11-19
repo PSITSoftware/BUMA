@@ -30,10 +30,10 @@ namespace BUMA.Administration.Services.Interfaces
 {
     public interface ITipoDocumentoServicio
     {
-        public Task<List<Tipodocumento>> GetTipodocumentoListAsync();
+        Task<List<Tipodocumento>> GetTipodocumentoListAsync();
 
-        public Task<Tipodocumento> GetTipodocumentoByIdAsync(int idTipodocumento);
-        public Task InsertTipodocumento(Tipodocumento tipodocumento);
-        public Task UpdateTipodocumento(Tipodocumento tipodocumento);
+        Task<Tipodocumento> GetTipodocumentoByIdAsync(int idTipodocumento);
+        Task InsertTipodocumento(Tipodocumento tipodocumento);
+        Task UpdateTipodocumento(Tipodocumento tipodocumento);
     }
 }

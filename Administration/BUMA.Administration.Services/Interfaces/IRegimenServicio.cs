@@ -29,10 +29,10 @@ namespace BUMA.Administration.Services.Interfaces
 {
     public interface IRegimenServicio
     {
-        public Task<List<Regimen>> GetRegimenListAsync();
+        Task<List<Regimen>> GetRegimenListAsync();
 
-        public Task<Regimen> GetRegimenByIdAsync(int idRegimen);
-        public Task InsertRegimen(Regimen regimen);
-        public Task UpdateRegimen(Regimen regimen);
+        Task<Regimen> GetRegimenByIdAsync(int idRegimen);
+        Task InsertRegimen(Regimen regimen);
+        Task UpdateRegimen(Regimen regimen);
     }
 }

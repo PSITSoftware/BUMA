@@ -16,92 +16,103 @@
 // ---	-------------	----------------------	-----------------------------------
 // 0.1	30/10/2021	    Edwn Andres Florez	    Desarrollo Inicial
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using System.Security.Policy;
-using System.Data;
 using BUMA.Domain.DTO.Administration;
 using BUMA.Administration.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Administration
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class TipoDocumentoController : Controller
+
+    public class TipoDocumentoController : ApiController
     {
         private readonly ITipoDocumentoServicio _tipodocumentoServicio;
-        public TipoDocumentoController(IConfiguration configuration, ITipoDocumentoServicio tipodocumentoServicio)
+        public TipoDocumentoController(ITipoDocumentoServicio tipodocumentoServicio)
         {
             _tipodocumentoServicio = tipodocumentoServicio;
         }
 
 
-        /// <summary>
-        /// Obtiene el listado de todos los Usuarios
-        /// </summary>
-        /// <returns></returns>
+        [Route("api/Tipodocumentos/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de tipodocumentos", typeof(Tipodocumento))]
         [HttpGet]
-        public async Task<List<Tipodocumento>> GetTipodocumentoservicioListAsync()
-        {
-
-            return await _tipodocumentoServicio.GetTipodocumentoListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<Tipodocumento> GetTipodocumentoservicioByIdAsync(int idTipoDocumento)
-        {
-            var tipodocumento = new Tipodocumento();
-            return tipodocumento;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param //name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertTipodocumento(Tipodocumento tipodocumento)
+        public async Task<IHttpActionResult> GetTipodocumentosListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _tipodocumentoServicio.GetTipodocumentoListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param //name="regimen"></param>
+        /// <param name="idtipodocumentos"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateTipodocumento(Tipodocumento tipodocumento)
+        [Route("api/Tipodocumentos/GetTipodocumentosById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los tipos de documentos", typeof(Tipodocumento))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetTipodocumentosByIdAsync(int idTipodocumentos)
         {
             try
             {
-
+                var result = await Task.Run(() => _tipodocumentoServicio.GetTipodocumentoByIdAsync(idTipodocumentos));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="tipodocumento"></param>
+        /// <returns></returns>
+        [Route("api/tipodocumento/InsertTipodocumento")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por tipo de documento", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertTipodocumento(Tipodocumento tipodocumento)
+        {
+            try
+            {
+                await _tipodocumentoServicio.InsertTipodocumento(tipodocumento);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="tipodocumento"></param>
+        /// <returns></returns>
+        [Route("api/TipoDocumento/UpdateTipoDocumento")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por tipo de documento", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateTipodocumento(Tipodocumento tipodocumento)
+        {
+            try
+            {
+                await _tipodocumentoServicio.UpdateTipodocumento(tipodocumento);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

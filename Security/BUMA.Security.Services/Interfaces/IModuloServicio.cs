@@ -24,10 +24,10 @@ namespace BUMA.Security.Services.Interfaces
 {
     public interface IModuloServicio
     {
-        public Task<List<Modulo>> GetModuloListAsync();
+        Task<List<Modulo>> GetModuloListAsync();
 
-        public Task<Modulo> GetModuloByIdAsync(int idModulo);
-        public Task InsertModulo(Modulo modulo);
-        public Task UpdateModulo(Modulo modulo);
+        Task<Modulo> GetModuloByIdAsync(int idModulo);
+        Task InsertModulo(Modulo modulo);
+        Task UpdateModulo(Modulo modulo);
     }
 }

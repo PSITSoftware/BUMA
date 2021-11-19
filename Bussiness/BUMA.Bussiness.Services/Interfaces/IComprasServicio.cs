@@ -27,10 +27,10 @@ namespace BUMA.Bussiness.Services.Interfaces
 {
     public interface IComprasServicio
     {
-        public Task<List<Compras>> GetComprasListAsync();
+        Task<List<Compras>> GetComprasListAsync();
 
-        public Task<Compras> GetComprasByIdAsync(int idCompras);
-        public Task InsertCompras(Compras compras);
-        public Task UpdateCompras(Compras compras);
+        Task<Compras> GetComprasByIdAsync(int idCompras);
+        Task InsertCompras(Compras compras);
+        Task UpdateCompras(Compras compras);
     }
 }

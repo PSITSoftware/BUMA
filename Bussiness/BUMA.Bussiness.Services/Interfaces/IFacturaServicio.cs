@@ -26,10 +26,10 @@ namespace BUMA.Bussiness.Services.Interfaces
 {
     public interface IFacturaServicio
     {
-        public Task<List<Factura>> GetFacturaListAsync();
+        Task<List<Factura>> GetFacturaListAsync();
 
-        public Task<Factura> GetFacturaByIdAsync(int idFactura);
-        public Task InsertFactura(Factura factura);
-        public Task UpdateFactura(Factura factura);
+        Task<Factura> GetFacturaByIdAsync(int idFactura);
+        Task InsertFactura(Factura factura);
+        Task UpdateFactura(Factura factura);
     }
 }

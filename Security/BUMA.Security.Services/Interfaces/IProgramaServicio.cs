@@ -24,10 +24,10 @@ namespace BUMA.Security.Services.Interfaces
 {
     public interface IProgramaServicio
     {
-        public Task<List<Programa>> GetProgramaListAsync();
+        Task<List<Programa>> GetProgramaListAsync();
 
-        public Task<Programa> GetProgramaByIdAsync(int idPrograma);
-        public Task InsertPrograma(Programa programa);
-        public Task UpdatePrograma(Programa programa);
+        Task<Programa> GetProgramaByIdAsync(int idPrograma);
+        Task InsertPrograma(Programa programa);
+        Task UpdatePrograma(Programa programa);
     }
 }

@@ -25,11 +25,11 @@ namespace BUMA.Bussiness.Services.Interfaces
 {
     public interface ISubUbicacionServicio
     {
-        public Task<List<Sububicacion>> GetSubUbicacionListAsync();
+        Task<List<Sububicacion>> GetSubUbicacionListAsync();
 
-        public Task<Sububicacion> GetSubUbicacionByIdAsync(int idSububicacion);
-        public Task InsertSubUbicacion(Sububicacion sububicacion);
-        public Task UpdateSubUbicacion(Sububicacion sububicacion);
+        Task<Sububicacion> GetSubUbicacionByIdAsync(int idSububicacion);
+        Task InsertSubUbicacion(Sububicacion sububicacion);
+        Task UpdateSubUbicacion(Sububicacion sububicacion);
 
     }
 }

@@ -17,30 +17,23 @@
 // 0.1	30/10/2021	    Edwn Andres Florez	    Desarrollo Inicial
 
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using System.Security.Policy;
-using System.Data;
 using BUMA.Domain.DTO.Administration;
 using BUMA.Administration.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
+
 
 namespace BUMA.Web.API.Controllers.Administration
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class TransaccionController : Controller
+    
+    public class TransaccionController : ApiController
     {
         private readonly ITransaccionServicio _transaccionServicio;
-        public TransaccionController(IConfiguration configuration, ITransaccionServicio transaccionServicio)
+        public TransaccionController(ITransaccionServicio transaccionServicio)
         {
             _transaccionServicio = transaccionServicio;
         }
@@ -50,59 +43,82 @@ namespace BUMA.Web.API.Controllers.Administration
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/Transaccion/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de Transacciones", typeof(Trasaccion))]
         [HttpGet]
-        public async Task<List<Trasaccion>> GetTransaccionListAsync()
-        {
-
-            return await _transaccionServicio.GetTransaccionListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<Trasaccion> GetTransaccionByIdAsync(int idTransaccion)
-        {
-            var transaccion = new Trasaccion();
-            return transaccion;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param //name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertTransaccion(Trasaccion Trasaccion)
+        public async Task<IHttpActionResult> GetTransaccionListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _transaccionServicio.GetTransaccionListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param //name="regimen"></param>
+        /// <param name="idtransaccion"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateTransaccion(Trasaccion Transaccion)
+        [Route("api/Transaccion/GetTransaccionById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de transacciones", typeof(Trasaccion))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetSucursalByIdAsync(int idTransaccion)
         {
             try
             {
-
+                var result = await Task.Run(() => _transaccionServicio.GetTransaccionByIdAsync(idTransaccion));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="transaccion"></param>
+        /// <returns></returns>
+        [Route("api/transaccion/InsertTransaccion")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por transaccion", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertTransaccion(Trasaccion trasaccion)
+        {
+            try
+            {
+                await _transaccionServicio.InsertTrasaccion(trasaccion);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="transaccion"></param>
+        /// <returns></returns>
+        [Route("api/transaccion/UpdateTransaccion")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por Transaccion", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateTransaccion(Trasaccion trasaccion)
+        {
+            try
+            {
+                await _transaccionServicio.UpdateTrasaccion(trasaccion);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

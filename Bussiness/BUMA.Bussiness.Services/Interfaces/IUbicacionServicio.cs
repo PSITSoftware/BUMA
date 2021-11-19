@@ -25,10 +25,10 @@ namespace BUMA.Bussiness.Services.Interfaces
 {
     public interface IUbicacionServicio
     {
-        public Task<List<Ubicacion>> GetUbicacionListAsync();
+        Task<List<Ubicacion>> GetUbicacionListAsync();
 
-        public Task<Ubicacion> GetUbicacionByIdAsync(int idUbicacion);
-        public Task InsertUbicacion(Ubicacion ubicacion);
-        public Task UpdateUbicacion(Ubicacion ubicacion);
+        Task<Ubicacion> GetUbicacionByIdAsync(int idUbicacion);
+        Task InsertUbicacion(Ubicacion ubicacion);
+        Task UpdateUbicacion(Ubicacion ubicacion);
     }
 }

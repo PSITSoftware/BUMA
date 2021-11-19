@@ -25,11 +25,11 @@ namespace BUMA.Security.Services.Interfaces
     public interface IPermisoServicio
     {
 
-        public Task<List<Permiso>> GetPermisosListAsync();
+        Task<List<Permiso>> GetPermisosListAsync();
 
-        public Task<Permiso> GetPermisosByIdAsync(int idPermiso);
-        public Task InsertPermisos(Permiso permiso);
-        public Task UpdatePermisos(Permiso permiso);
+        Task<Permiso> GetPermisosByIdAsync(int idPermiso);
+        Task InsertPermisos(Permiso permiso);
+        Task UpdatePermisos(Permiso permiso);
     }
 }
 

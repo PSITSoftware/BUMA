@@ -17,19 +17,21 @@
 // 0.1	20/10/2021	    Silvio Alejandro Reyes Jota	    Desarrollo Inicial
 
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BUMA.Domain.DTO.Security;
 using BUMA.Security.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Security
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class ProgramaController : Controller
+ 
+    public class ProgramaController : ApiController
     {
         private readonly IProgramaServicio _programaServicio;
-        public ProgramaController(IConfiguration configuration, IProgramaServicio programaServicio)
+        public ProgramaController(IProgramaServicio programaServicio)
         {
             _programaServicio = programaServicio;
         }
@@ -39,59 +41,82 @@ namespace BUMA.Web.API.Controllers.Security
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
+        [Route("api/Programa/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los programas", typeof(Programa))]
         [HttpGet]
-        public async Task<List<Programa>> GetProgramaListAsync()
-        {
-
-            return await _programaServicio.GetProgramaListAsync();
-        }
-
-        /// <summary>
-        /// Obtiene los Usuarios por Identificador
-        /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<Programa> GetProgramaByIdAsync(int idPrograma)
-        {
-            var programa = new Programa();
-            return programa;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InserPrograma(Programa programa)
+        public async Task<IHttpActionResult> GetProgramaListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _programaServicio.GetProgramaListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param name="usuario"></param>
+        /// <param name="idprograma"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateProgrma(Programa programa)
+        [Route("api/Programa/GetProgramaById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los programas", typeof(Programa))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetprogramaByIdAsync(int idprograma)
         {
             try
             {
-
+                var result = await Task.Run(() => _programaServicio.GetProgramaByIdAsync(idprograma));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de los clientes
+        /// </summary>
+        /// <param name="programa"></param>
+        /// <returns></returns>
+        [Route("api/Programa/InsertPrograma")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por programa", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertPrograma(Programa programa)
+        {
+            try
+            {
+                await _programaServicio.InsertPrograma(programa);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="programa"></param>
+        /// <returns></returns>
+        [Route("api/Programa/UpdatePrograma")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por programa", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdatePrograma(Programa programa)
+        {
+            try
+            {
+                await _programaServicio.UpdatePrograma(programa);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

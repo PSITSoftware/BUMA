@@ -17,20 +17,23 @@
 // 0.1	28/10/2021	    Edwn Andres Florez	    Desarrollo Inicial
 
 
+
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BUMA.Domain.DTO.Bussiness;
 using BUMA.Bussiness.Services.Interfaces;
+using System.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace BUMA.Web.API.Controllers.Bussiness
 {
-    [Produces("application/json")]
-    [Route("api/[controller]/[action]")]
-    public class InventarioController: Controller
+   
+    public class InventarioController: ApiController
     {
         private readonly IInventarioServicio _InventarioServicio;
-        public InventarioController(IConfiguration configuration, IInventarioServicio inventarioServicio)
+        public InventarioController(IInventarioServicio inventarioServicio)
         {
             _InventarioServicio = inventarioServicio;
         }
@@ -40,60 +43,86 @@ namespace BUMA.Web.API.Controllers.Bussiness
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<List<Inventario>> GetInventarioListAsync()
-        {
-
-            //object __DetallecompraServicio = null;
-            return await _InventarioServicio.GetInventarioListAsync();
-        }
-
         /// <summary>
-        /// Obtiene los Usuarios por Identificador
+        /// Obtiene el listado de todos los Usuarios
         /// </summary>
-        /// <param name="idUsuario"></param>
         /// <returns></returns>
+        [Route("api/Inventario/GetList")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de los inventarios", typeof(Inventario))]
         [HttpGet]
-        public async Task<Inventario> GetInventarioByIdAsync(int idInventario)
-        {
-            var inventario = new Inventario();
-            return inventario;
-        }
-
-        /// <summary>
-        /// Inserta la informaciòn del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public async Task InsertInventario(Inventario inventario)
+        public async Task<IHttpActionResult> GetFacturaListAsync()
         {
             try
             {
-
+                var result = await Task.Run(() => _InventarioServicio.GetInventarioListAsync());
+                return Ok(result);
             }
             catch (Exception ex)
             {
-
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
 
         /// <summary>
-        /// Actualiza la informaciòn del usuario
+        /// Obtiene los Caja por Identificador
         /// </summary>
-        /// <param //name="usuario"></param>
+        /// <param name="idinventario"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task UpdateInventario(Inventario inventario)
+        [Route("api/Inventario/GetInventarioById")]
+        [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados  de inventarios", typeof(Inventario))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetinventarioByIdAsync(int idinventario)
         {
             try
             {
-
+                var result = await Task.Run(() => _InventarioServicio.GetInventarioByIdAsync(idinventario));
+                return Ok(result);
             }
             catch (Exception ex)
             {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
 
+        /// <summary>
+        /// Inserta la informaciòn de los clientes
+        /// </summary>
+        /// <param name="inventario"></param>
+        /// <returns></returns>
+        [Route("api/Inventario/InsertInventario")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por  inventario", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertInventario(Inventario inventario)
+        {
+            try
+            {
+                await _InventarioServicio.InsertInventario(inventario);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
+            }
+        }
+
+        /// <summary>
+        /// Actualiza la informaciòn de la sucursal
+        /// </summary>
+        /// <param name="factura"></param>
+        /// <returns></returns>
+        [Route("api/Inventario/UpdateInventario")]
+        [SwaggerResponse(HttpStatusCode.OK, "Informacion devuelta por las facturas", typeof(HttpResponseMessage))]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateDetalleFacturas(Inventario inventario)
+        {
+            try
+            {
+                await _InventarioServicio.UpdateInventario(inventario);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex));
             }
         }
     }

@@ -27,10 +27,10 @@ namespace BUMA.Administration.Services.Interfaces
 {
     public interface IMetodoPagoServicio
     {
-        public Task<List<Metodopago>> GetMetodoPagoListAsync();
+         Task<List<Metodopago>> GetMetodoPagoListAsync();
 
-        public Task<Metodopago> GetMetodoPagoByIdAsync(int idMetodoPago);
-        public Task InsertMetodopago(Metodopago metodopago);
-        public Task UpdateMetodopago(Metodopago metodopago);
+         Task<Metodopago> GetMetodoPagoByIdAsync(int idMetodoPago);
+         Task InsertMetodopago(Metodopago metodopago);
+         Task UpdateMetodopago(Metodopago metodopago);
     }
 }
