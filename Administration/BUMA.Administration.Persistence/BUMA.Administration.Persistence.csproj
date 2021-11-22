@@ -42,6 +42,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\CajaPersistencia.cs" />
+    <Compile Include="Implementations\ControlPersistencia.cs" />
+    <Compile Include="Implementations\InsumoPersistencia.cs" />
+    <Compile Include="Implementations\LicenciaPersistencia.cs" />
+    <Compile Include="Implementations\MetodoPagoaPersistencia.cs" />
+    <Compile Include="Implementations\EmpresaPersistencia.cs" />
+    <Compile Include="Implementations\ProductoPersistencia.cs" />
+    <Compile Include="Implementations\ProvedorPersistencia.cs" />
+    <Compile Include="Implementations\RegimenPersistencia.cs" />
+    <Compile Include="Implementations\SucursalPersistencia.cs" />
+    <Compile Include="Implementations\TipoDocumentoPersistencia.cs" />
+    <Compile Include="Implementations\TipoProductoPersistencia.cs" />
+    <Compile Include="Implementations\TipoEmpresaPersistencia.cs" />
+    <Compile Include="Implementations\TranssaccionPersistencia.cs" />
+    <Compile Include="Implementations\UnidadPersistencia.cs" />
+    <Compile Include="Interfaces\IUnidadPersistencia.cs" />
+    <Compile Include="Interfaces\ITranssacionPersistencia.cs" />
+    <Compile Include="Interfaces\ITipoProductoPersistencia.cs" />
+    <Compile Include="Interfaces\ITipoEmpresaPersistencia.cs" />
+    <Compile Include="Interfaces\ITipoDocumentoPersistencia.cs" />
+    <Compile Include="Interfaces\ISucursalPersistencia.cs" />
+    <Compile Include="Interfaces\IRegimenPersistencia.cs" />
+    <Compile Include="Interfaces\IProvedorPersistencia.cs" />
+    <Compile Include="Interfaces\IProductoPeristencia.cs" />
+    <Compile Include="Interfaces\IMetodoPagoPersistencia.cs" />
+    <Compile Include="Interfaces\ILicenciaPersistencia.cs" />
+    <Compile Include="Interfaces\IInsumoPersistencia.cs" />
+    <Compile Include="Interfaces\IEmpresaPersistencia.cs" />
+    <Compile Include="Interfaces\IControlPersistencia.cs" />
     <Compile Include="Interfaces\ICajaPersistencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
