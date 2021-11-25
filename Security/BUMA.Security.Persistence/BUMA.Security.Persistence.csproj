@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>f3b6e92f-24f1-4f3a-a709-c2aadc340bea</ProjectGuid>
+    <ProjectGuid>{F3B6E92F-24F1-4F3A-A709-C2AADC340BEA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BUMA.Security.Persistence</RootNamespace>
@@ -31,24 +31,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Implementaciones\ModuloPersistencia.cs" />
+    <Compile Include="Implementaciones\PermisoPersistencia.cs" />
+    <Compile Include="Implementaciones\ProgramaPersistencia.cs" />
+    <Compile Include="Implementaciones\ProgramaRolPersistencia.cs" />
+    <Compile Include="Implementaciones\RolPersistencia.cs" />
+    <Compile Include="Implementaciones\RolporUsuarioPersistencia.cs" />
+    <Compile Include="Implementaciones\UsuarioPersistencia.cs" />
+    <Compile Include="Interfaces\IUsuarioPersistencia.cs" />
+    <Compile Include="Interfaces\IRolporUsuarioPersistencia.cs" />
+    <Compile Include="Interfaces\IRolPersistencia.cs" />
+    <Compile Include="Interfaces\IProgramaRolPersistencia.cs" />
+    <Compile Include="Interfaces\IProgramaPersistencia.cs" />
+    <Compile Include="Interfaces\IPermisoPersistencia.cs" />
+    <Compile Include="Interfaces\IModuloPersistencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\BUMA.Domain\BUMA.Domain.csproj">
+      <Project>{041e7b94-5b3d-4366-b245-8a8bf11156f4}</Project>
+      <Name>BUMA.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>
