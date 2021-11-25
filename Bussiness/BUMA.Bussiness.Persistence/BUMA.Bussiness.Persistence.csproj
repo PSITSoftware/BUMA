@@ -41,6 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="implementaciones\SubUbicacionPersistencia.cs" />
+    <Compile Include="implementaciones\UbicacionPersistencia.cs" />
+    <Compile Include="implementaciones\InventarioPersistencia.cs" />
+    <Compile Include="implementaciones\FacturaPersistencia.cs" />
+    <Compile Include="implementaciones\PedidoPersistencia.cs" />
+    <Compile Include="implementaciones\DetallePedidoPersistencia.cs" />
+    <Compile Include="implementaciones\DetalleFacturaPersistencia.cs" />
+    <Compile Include="implementaciones\DetalleCompraPersistencia.cs" />
+    <Compile Include="implementaciones\ComprasPersistencia.cs" />
+    <Compile Include="implementaciones\ClientePersistencia.cs" />
     <Compile Include="interfaces\IUbicacionPersistencia.cs" />
     <Compile Include="interfaces\ISubUbicacionPersistencia.cs" />
     <Compile Include="interfaces\IInventarioPersistencia.cs" />
@@ -59,8 +69,6 @@
       <Name>BUMA.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="implementaciones\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
