@@ -16,6 +16,7 @@
 // ---	-------------	----------------------	-----------------------------------
 // 0.1	24/11/2021	    Edwn Andres Florez	    Desarrollo Inicialusing BUMA.Security.Persistence.Interfaces;
 using BUMA.Domain.DTO.Security;
+using BUMA.Security.Persistence.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
