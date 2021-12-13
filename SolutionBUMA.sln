@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31402.337
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{0E7F8266-27DE-4EBC-BB46-82BF3C77EBE4}"
 EndProject
@@ -28,6 +28,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUMA.Bussiness.Persistence", "Bussiness\BUMA.Bussiness.Persistence\BUMA.Bussiness.Persistence.csproj", "{F9213014-70A4-4632-8FED-6FCBA0F476B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUMA.Security.Persistence", "Security\BUMA.Security.Persistence\BUMA.Security.Persistence.csproj", "{F3B6E92F-24F1-4F3A-A709-C2AADC340BEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{F5D8FBC1-3B93-49FA-9DF6-1FFEFE72244D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUMA.Utilities", "BUMA.Utilities\BUMA.Utilities.csproj", "{D590E8D3-24C6-4921-A6ED-8D3901C6831D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUMA.Utilities.Test", "BUMA.Test\BUMA.Utilities.Test\BUMA.Utilities.Test.csproj", "{483303E4-D6CB-4B4D-AE96-AD60A575C0F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +73,14 @@ Global
 		{F3B6E92F-24F1-4F3A-A709-C2AADC340BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3B6E92F-24F1-4F3A-A709-C2AADC340BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3B6E92F-24F1-4F3A-A709-C2AADC340BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D590E8D3-24C6-4921-A6ED-8D3901C6831D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D590E8D3-24C6-4921-A6ED-8D3901C6831D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D590E8D3-24C6-4921-A6ED-8D3901C6831D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D590E8D3-24C6-4921-A6ED-8D3901C6831D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483303E4-D6CB-4B4D-AE96-AD60A575C0F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483303E4-D6CB-4B4D-AE96-AD60A575C0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483303E4-D6CB-4B4D-AE96-AD60A575C0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483303E4-D6CB-4B4D-AE96-AD60A575C0F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +94,7 @@ Global
 		{FEA53514-78FF-4C97-8A94-D19C95826DAE} = {6F9C6B44-4765-43EE-8854-56A12ECCEC79}
 		{F9213014-70A4-4632-8FED-6FCBA0F476B7} = {A0F32AB3-9080-49C3-A168-3E4842E8C954}
 		{F3B6E92F-24F1-4F3A-A709-C2AADC340BEA} = {0E7F8266-27DE-4EBC-BB46-82BF3C77EBE4}
+		{D590E8D3-24C6-4921-A6ED-8D3901C6831D} = {F5D8FBC1-3B93-49FA-9DF6-1FFEFE72244D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {85734D0B-96DD-4FB9-9C4D-80108E22CAFD}
