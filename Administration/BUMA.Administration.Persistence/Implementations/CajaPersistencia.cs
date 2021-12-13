@@ -19,11 +19,13 @@ using BUMA.Administration.Persistence.Interfaces;
 using BUMA.Domain.DTO.Administration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BUMA.Utilities;
 
 namespace BUMA.Administration.Persistence.Implementations
 {
     public class CajaPersistencia : ICajaPersistencia
     {
+
         public async Task<List<Caja>> GetCajaListAsync()
         {
             var caja = new List<Caja>();
