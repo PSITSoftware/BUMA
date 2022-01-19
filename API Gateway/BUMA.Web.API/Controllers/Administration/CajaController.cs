@@ -40,7 +40,7 @@ namespace BUMA.Web.API.Controllers.Administration
         /// Obtiene el listado de todos los Usuarios
         /// </summary>
         /// <returns></returns>
-        [Route("api/Caja/GetCajaList")]
+        [Route("api/GetCajaList")]
         [SwaggerResponse(HttpStatusCode.OK, "Retorna los listados de preguntas personalizadas", typeof(Caja))]
         [HttpGet]
         public async Task<IHttpActionResult> GetCajaListAsync()
